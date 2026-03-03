@@ -2,8 +2,6 @@
 
 Author: Zeev Weizmann
 
-Personal ID: 678524131523
-
 This project implements an API service that takes a public GitHub repository URL and returns a structured summary of the project using an LLM (Nebius Token Factory API).
 
 The API extracts key repository information (README, file structure, recent commits) and sends a condensed context to the LLM to generate a
