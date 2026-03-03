@@ -173,6 +173,3 @@ the service degrades gracefully by returning empty sections instead of failing e
 
 - **Project Page (GitHub Pages):**  
   https://zeevweizmann.github.io/github-repo-summarizer/
-
-The GitHub Pages site provides a static overview of the project.  
-The API itself runs locally via FastAPI and is not deployed as a hosted backend service.
