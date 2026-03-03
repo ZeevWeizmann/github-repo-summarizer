@@ -143,10 +143,12 @@ The API handles the following error scenarios:
 
 All errors are returned as structured JSON responses in the following format:
 
+```
 {
 "status": "error",
 "message": "Description of what went wrong"
 }
+```
 
 In cases where partial GitHub metadata cannot be retrieved (e.g., commits or file tree),
 the service degrades gracefully by returning empty sections instead of failing entirely.
