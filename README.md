@@ -2,6 +2,8 @@
 
 Author: Zeev Weizmann
 
+Personal ID: 678524131523
+
 This project implements an API service that takes a public GitHub repository URL and returns a structured summary of the project using an LLM (Nebius Token Factory API).
 
 The API extracts key repository information (README, file structure, recent commits) and sends a condensed context to the LLM to generate a
@@ -106,15 +108,25 @@ The 8B parameter size offers enough representational capacity for accurate high-
 Repositories can be large, so sending everything to the LLM is not
 feasible.
 
-Included: - README (first 3000 characters) - Filtered file tree (first
-200 relevant files) - Recent commit messages (filtered and truncated)
+### Included
 
-Skipped: - Binary files (.png, .jpg, .zip, .pdf, etc.) - Lock files
-(poetry.lock, yarn.lock, package-lock.json) - Build artifacts (dist/,
-build/) - Virtual environments (.venv/) - node_modules/
+- README (first 3000 characters)
+- Filtered file tree (first 200 relevant files)
+- Recent commit messages (filtered and truncated)
 
-Context management: - README truncated to 3000 characters - File tree
-limited to first 200 files - Commits truncated to 1500 characters
+### Skipped
+
+- Binary files (.png, .jpg, .zip, .pdf, etc.)
+- Lock files (poetry.lock, yarn.lock, package-lock.json)
+- Build artifacts (dist/, build/)
+- Virtual environments (.venv/)
+- node_modules/
+
+### Context management
+
+- README truncated to 3000 characters
+- File tree limited to first 200 files
+- Commits truncated to 1500 characters
 
 This ensures the context window is respected while preserving the most
 informative signals.
@@ -138,3 +150,27 @@ All errors are returned as structured JSON responses in the following format:
 
 In cases where partial GitHub metadata cannot be retrieved (e.g., commits or file tree),
 the service degrades gracefully by returning empty sections instead of failing entirely.
+
+---
+
+## Project Structure
+
+- `main.py` – FastAPI application entry point and `/summarize` endpoint
+- `models.py` – Pydantic request schema for validating input
+- `github_service.py` – GitHub API interaction and repository filtering logic
+- `llm_service.py` – LLM integration via Nebius Token Factory (OpenAI-compatible API)
+- `requirements.txt` – Project dependencies
+- `.gitignore` – Excludes virtual environments, cache files, and sensitive data
+
+---
+
+## Repository & Links
+
+- **GitHub Repository:**  
+  https://github.com/ZeevWeizmann/github-repo-summarizer
+
+- **Project Page (GitHub Pages):**  
+  https://zeevweizmann.github.io/github-repo-summarizer/
+
+The GitHub Pages site provides a static overview of the project.  
+The API itself runs locally via FastAPI and is not deployed as a hosted backend service.
